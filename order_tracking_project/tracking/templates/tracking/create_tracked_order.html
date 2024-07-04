@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Tracked Order</title>
+</head>
+<body>
+    <h2>Add Tracked Order</h2>
+
+    {% if tracking_number %}
+        <p>Tracking ID: {{ tracking_number }}</p>
+        <p><a href="{% url 'track_order' tracking_number=tracking_number %}">Track Order</a></p>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        <label>Order:</label><br>
+        <input type="text" name="order" required><br><br>
+        
+        <label>Status:</label><br>
+        <input type="text" name="status" required><br><br>
+
+        <button type="submit">Add Order</button>
+    </form>
+</body>
+</html>
